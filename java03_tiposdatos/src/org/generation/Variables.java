@@ -188,8 +188,120 @@ public class Variables {
 		// hacer un casting
 		double divisionDoubleConCasting = (double)opA / opB;
 		System.out.println( divisionDoubleConCasting ); // 0.83
+		int residuo = opA % 2 ; // 1
+		System.out.println("5 % 2: " + residuo );
+		
+		// --------------- Preincremento, predecremento, postincremento, postdecremento-----------
+		
+		int valorInicial = 10;
+		System.out.println("Preincremento  " + ++valorInicial ); // 11, valorInicial = 11
+		System.out.println("Postincremento " + valorInicial++ ); // 11, valorInicial = 12
+		System.out.println("Valor final " + valorInicial ); // 12
+		
+		int edad = 33;
+		System.out.println("Predecremento " + --edad); // 32, edad = 32
+		System.out.println("Postdecremento " + edad--); // 32, edad = 31
+		System.out.println("Valor final " +  edad ); // 31
+		
+		// ---------------- Operadores comparativos --------------------------
+		// El resultado de cualquier comparación es booleano
+		// <, <=, >, >=, ==, !=
+		int numEmpleados = 1_000;
+		System.out.println("Empleados > 1000 " +  ( numEmpleados > 1000 )); // false
+		System.out.println("Empleados >= 1000 " +  ( numEmpleados >= 1000 )); // true
+		System.out.println("Empleados == 1000 " +  ( numEmpleados == 1000 )); // true
+		System.out.println("Empleados != 1000 " +  ( numEmpleados != 1000 )); // false 
+		
+		boolean esMayor = numEmpleados > Integer.parseInt("1000");
+		// esMayor = 100 > 50 > 2; Este tipo de op no se puede realizar
+		
+		// --------------- Operadores lógicos -------------------------------
+		// && retorna true si ambos operadores son true
+		// || retorna true si cualquiera de sus operados es true
+		// !  invierte el resultado booleano
+		
+		int empleados = 1_000;
+		System.out.println("empleados > 0 && empleados < 2000 " +
+						  (empleados > 0 && empleados < 2000) ); // true
+		
+		System.out.println("empleados > 0 || empleados < 250 " +
+				(empleados > 0 || empleados < 250) ); // true  
+		
+		boolean a = true;
+		boolean b = false;
+		boolean c = true;
+		
+		System.out.println(  (a && b) || ( a && c)  ); // true
+		System.out.println(  a || b || c && a  ); // true 
+		System.out.println(   !( a || b ) && (!a || c )   ); // false 
+		System.out.println(  a || b && c || a && b  ); // true
+		
+		// -----------------------División por cero ------------------
+		// se realiza una excepción en tiempo de ejecución.
+		// int divisionPorCero = 45/0; //  / by zero
 		
 		
+		// --------- Condicional if ----------------------------------
+		int numParticipantes = 34;
+		boolean esChVIP = true;
+		
+		if( numParticipantes < 10 ) 
+			System.out.println("Hay pocas personas");
+		else if (numParticipantes >= 10 && numParticipantes < 20)
+			System.out.println("Hay varias personas");
+		else if ( esChVIP )
+			System.out.println("Puro VIP pariente");
+		else 
+			System.out.println("Llenamos el foro sol");
+		
+		// ------- Consideraciones para la condicional if -------------
+		// Los objetos (Strings) se compara la referencia con ==
+		// Para comparar String lo correcto es utilizar el métodos
+		// equals()
+		
+		String nombreParticipante = new String("Manuel");
+		
+		// if ( nombreParticipante == "Manuel" ) No se debe comparar de esta forma
+		if ( nombreParticipante.equals("Manuel") )
+			System.out.println("El nombre es igual al de Manuel");
+		else
+			System.out.println("El nombre es diferente");
+		
+		// -------- Condicional switch -------------------------
+		
+		int mesNacimiento = 12;
+		String txtMes;
+		
+		switch ( mesNacimiento ) {
+		case 1:
+			txtMes = "Enero";
+			break;
+		case 2:
+			txtMes = "Febrero";
+		    break;
+		case 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12:
+			txtMes = "Si lo sé, pero al rato te digo";
+			break;
+		default:
+			txtMes = "El mes es inválido";		
+			
+		}
+		System.out.println("Mes: " + txtMes);
+		
+		String numCohorte = "30";
+		// La condicional switch utiliza el método
+		// .equals para comparar strings.
+		switch ( numCohorte ) {
+		case "30":
+			System.out.println("Hoy tendremos entrevistas");
+			break;
+		case "31":
+			System.out.println("Están en la semana 3");
+			break;
+		default:
+			System.out.println("No tengo registrado el dato");
+		}
+
 
 	}
 
