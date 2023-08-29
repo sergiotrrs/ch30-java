@@ -67,6 +67,11 @@ public class UsoScanner {
 		// acceder al input.
 		myScan.close();
 
+		
+		// En un nuevo archivo:
+		// Calcular el área y perímetro de un rectángulo.
+		
+ 
 	}
 
 }
