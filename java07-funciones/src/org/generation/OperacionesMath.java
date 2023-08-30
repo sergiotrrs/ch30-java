@@ -19,6 +19,11 @@ public class OperacionesMath {
 		return pi;
 	}
 	
+	// Hacer un método estático que reciba 1 parámetro
+	// y retorne la raíz cuadrada de ese valor.
+	static double raiz(double num) {
+		return Math.sqrt(num);
+	}
 	
 
 }

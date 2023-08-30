@@ -7,7 +7,7 @@ public class OperacionesMathTest {
 		double valorPiActual = OperacionesMath.valorPi();
 		System.out.println(valorPiActual);
 		
-
+		System.out.println("Raíz cuadrada de 10: " + OperacionesMath.raiz(10));
 	}
 
 }
