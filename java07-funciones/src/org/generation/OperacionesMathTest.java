@@ -37,6 +37,16 @@ public class OperacionesMathTest {
 		System.out.println("Add double numbers of object" + addDouble.name + " : " + result);
 		
 	
+		// ======= Uso de métodos sobrecargados ===========
+		OperacionesMath op = new OperacionesMath();
+		op.name = "operaciones";
+		System.out.println(" 3 + 5 :" + op.add(3, 5)  ); // 8
+		System.out.println(" 3.5 + 5.2 :" + op.add(3.5, 5.2)  ); // 8.7
+		System.out.println(" '4.2' + '3.1' :" + op.add("4.2", "3.1")  ); //7.3
+		
+		System.out.println(" 3 + 5.1 :" + op.add( 3, 5.1)  ); // 8.1
+		//System.out.println(" 3 + 5.1 :" + op.add( 3, "5.1")  ); // No se puede
+				
 		
 		
 	}

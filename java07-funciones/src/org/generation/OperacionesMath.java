@@ -17,8 +17,31 @@ public class OperacionesMath {
 			return a + b;
 		}
 	 
+	 int addInt(int a, int b) {
+		 return a + b;
+	 }
+	 
+	 // Sobrecarga de métodos ( overload method)
+	 // Métodos con el mismo nombre, pero diferentes parámetros
+	 double add ( double a, double b) {
+		 System.out.println("Método que recibe 2 double");
+		 return a + b;
+	 }
+	 
+	 int add ( int a, int b) {
+		 System.out.println("Método que recibe 2 int");
+		 return a + b;
+	 }
+	 
+	 double add ( String a, String b) {
+		 System.out.println("Método que recibe 2 String");
+		 return Double.parseDouble(a) + Double.parseDouble(b);
+	 }
+	 
 	 
 	
+	 
+	 
 	// ============= métodos de clase (static methods) ==========
 	/* Los métodos estáticos se relacia la clase en lugar de las
 	 * instancias.
