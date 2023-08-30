@@ -23,6 +23,8 @@ public class OperacionesMath {
 	 
 	 // Sobrecarga de métodos ( overload method)
 	 // Métodos con el mismo nombre, pero diferentes parámetros
+	 
+	 // Métodos con el mismo nombre pero que realizan operaciones diferentes.
 	 double add ( double a, double b) {
 		 System.out.println("Método que recibe 2 double");
 		 return a + b;
