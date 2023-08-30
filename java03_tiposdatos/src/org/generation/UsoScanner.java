@@ -67,6 +67,8 @@ public class UsoScanner {
 		// acceder al input.
 		myScan.close();
 
+		// Modificación desde GitHub coudeSpaces
+
 
 	}
 
