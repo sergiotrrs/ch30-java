@@ -29,6 +29,11 @@ public class OperacionesMath {
 		 System.out.println("Método que recibe 2 double");
 		 return a + b;
 	 }
+
+	 double add ( double a, double b, double c) {
+		 System.out.println("Método que recibe 2 double");
+		 return a + b;
+	 }
 	 
 	 int add ( int a, int b) {
 		 System.out.println("Método que recibe 2 int");

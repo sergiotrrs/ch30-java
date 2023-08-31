@@ -46,7 +46,9 @@ public class OperacionesMathTest {
 		
 		System.out.println(" 3 + 5.1 :" + op.add( 3, 5.1)  ); // 8.1
 		//System.out.println(" 3 + 5.1 :" + op.add( 3, "5.1")  ); // No se puede
-				
+		
+		System.out.println( "3" + "4"  ); // "34"  
+		System.out.println( 3 + 4  ); // 7  
 		
 		
 	}
