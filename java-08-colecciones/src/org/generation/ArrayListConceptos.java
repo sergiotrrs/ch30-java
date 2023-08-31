@@ -99,6 +99,18 @@ public class ArrayListConceptos {
 		// y sean colecciones independientes
 		// se puede usar el método clone()
 		ArrayList<String> lecturas = (ArrayList<String>) books.clone();
+		
+		// Mostrar últimos elementos
+		int elementsToShow = 2;
+		int collectionSize = books.size();
+		int endtIndex = collectionSize - 1;
+		int sizeDifference = collectionSize - elementsToShow; 
+		// Para que el índice no sea negativo y no arroje una excepción.
+		int stopIndex = sizeDifference > 0 ? sizeDifference : 0; 
+		// Iterando
+		for (int i = endtIndex; i >= stopIndex ; i--) {
+			System.out.println("reversa: "  + books.get(i));
+		}
 	}
 
 }
