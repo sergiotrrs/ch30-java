@@ -4,8 +4,10 @@ public class Atm {
 	
 	// atributos de instancia (non-static fileds)
 	double balance;
+	int serialNumber;
 	
 	// atributos de clase (static fields)
+	static int counter = 1000;
 		
 	/**
 	 * Método constructor
@@ -24,6 +26,7 @@ public class Atm {
 		// Constructor por default: no tiene parámetros
 		// Si no se agrega algún costructor, java proporciona este método
 		 System.out.println("Me estoy instanciando");
+		 this.serialNumber = counter++;
 	}
 	 /**
 	  * Método sobrecargado.
@@ -43,6 +46,10 @@ public class Atm {
 		// balance = balanceIn;
 		this.balance = balance;
 		System.out.println("Tengo la cantidad de " + this.balance);
+	}
+	Atm(int serialNumber, double balance){
+		this( balance );
+		this.serialNumber = serialNumber;
 	}
 	// métodos de instancia
 	
