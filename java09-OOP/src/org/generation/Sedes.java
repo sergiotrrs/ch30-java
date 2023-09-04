@@ -10,6 +10,7 @@ public class Sedes {
 	Sedes ( String nombre, String pais){
 		this.nombreSede = nombre;
 		this.pais = pais;
+		this.participantes = new ArrayList<>();
 	}
 	
 	void agregarParticipante(Participante persona  ) {
@@ -19,10 +20,9 @@ public class Sedes {
 	String mostrarParticipantes() {	
 		String textoCompleto = "";
 		for (Participante participante : participantes) {
-			textoCompleto += participante.detalles() + "\n";
+			textoCompleto += this.nombreSede+ " " + participante.detalles() + "\n";
 		}
-		return textoCompleto;
-		
+		return textoCompleto;		
 	}
 
 }

@@ -21,6 +21,8 @@ public class ParticipanteTest {
 		genMx.agregarParticipante(jess);
 		genMx.agregarParticipante(david);
 		genMx.agregarParticipante(maria);
+		genMx.agregarParticipante( new Participante("Esteban", "Castro", 27));
+		genMx.agregarParticipante( new Participante("MaryLuz", "García"));
 		
 		System.out.println( genMx.mostrarParticipantes() );
 
