@@ -16,6 +16,13 @@ public class ParticipanteTest {
 		
 		System.out.println( Participante.detallesEmpresa() );
 		
+		Sedes genMx = new Sedes("Generation MX", "México");
+		genMx.agregarParticipante(lalo);
+		genMx.agregarParticipante(jess);
+		genMx.agregarParticipante(david);
+		genMx.agregarParticipante(maria);
+		
+		System.out.println( genMx.mostrarParticipantes() );
 
 	}
 
