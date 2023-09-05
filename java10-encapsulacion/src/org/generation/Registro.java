@@ -15,13 +15,16 @@ public class Registro {
 		System.out.print("Escribe tu edad: ");
 		int age = sc.nextInt();
 		sc.nextLine();		
-			
+		nameVerifier(name);	
 		System.out.println("Registro exitoso: " + ageVerifier( age ));
 		sc.close();
 		} catch (IllegalStateException e) {
 			System.out.println("Por favor verifica la entrada");
 			e.printStackTrace();
 			System.out.println("El registro no fue exitoso");
+		} catch( Exception e) {
+			e.printStackTrace();
+			System.out.println("No sé que sucedió, pero no se hace el registro");
 		}
 	}
 	
@@ -31,6 +34,15 @@ public class Registro {
 			throw new IllegalStateException("No es mayor de edad");
 			
 		}
+		return true;
+	}
+	
+	private static boolean nameVerifier (String name) {
+		if (name == null) 
+			throw new NullPointerException("El nombre está vacío");
+		else if ( name.length()< 2 ) 
+			throw new IllegalArgumentException("Número de caracteres mínimo");
+		
 		return true;
 	}
 
