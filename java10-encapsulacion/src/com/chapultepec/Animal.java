@@ -12,7 +12,7 @@ public class Animal {
 	private String especie;
 	private boolean active;
 	
-	Animal(String nombre, String color, String especie){
+	public Animal(String nombre, String color, String especie){
 		this.nombre = nombre;
 		this.color = color;
 		this.especie = especie;
@@ -20,37 +20,37 @@ public class Animal {
 	
 	// métodos setters y getters para controlar los 
 	// atributos encapsulados
-	void setNombre(String nombre){
+	public void setNombre(String nombre){
 		this.nombre = nombre;
 	}
 	
-	String getNombre(){
+	public String getNombre(){
 		return this.nombre;
 	}
 
-	String getColor() {
+	public String getColor() {
 		return color;
 	}
 
-	void setColor(String color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 
-	String getEspecie() {
+	public String getEspecie() {
 		return especie;
 	}
 
-	void setEspecie(String especie) {
+	protected void setEspecie(String especie) {
 		this.especie = especie;
 	}
 	
 	// Para lo booleanos se recomienda utilizar
 	// is o has en lugar de set
-	boolean isActive() {
+	public boolean isActive() {
 		return this.active;
 	}
 	
-	void setActive(boolean active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 	
