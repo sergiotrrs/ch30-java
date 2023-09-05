@@ -17,7 +17,6 @@ public class Ejercicio {
 	 * Por ejemplo: crear la clase Zoologico.
 	 *                       clase Estancia.
 	 *                       
-	 * 
 	 */
 
 }
