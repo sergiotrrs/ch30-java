@@ -6,7 +6,7 @@ public class Animal {
 	private String habitat;
 	private double lifespan;
 	
-	public Animal(String name, String habitat, double lifespan) {		
+	protected Animal(String name, String habitat, double lifespan) {		
 		this.name = name;
 		this.habitat = habitat;
 		this.lifespan = lifespan;

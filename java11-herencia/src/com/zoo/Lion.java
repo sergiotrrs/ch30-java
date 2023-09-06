@@ -17,6 +17,10 @@ public class Lion extends Feline {
 		this.maneSize = maneSize;
 	}
 	
+	@Override
+	public String eat(String food) {
+		return "El león " + super.getName() + " come " + food;
+	}
 	
 
 }
