@@ -71,14 +71,14 @@ public class ATM {
 	
 	public String printAllRegisters() {
 		return log.stream()
-				.map( register -> register.toString() )
+				.map( ATMLogger -> ATMLogger.toString() )
 				.collect(Collectors.joining("\n"));
 	}
 
 	public String printAllDeposit() {
 		return log.stream()
-				.filter(  register -> register.getActivity().equals("deposit") )
-				.map( register -> register.toString() )
-				.collect(Collectors.joining("a\n"));
+				.filter(  ATMLogger -> ATMLogger.getActivity().equals("deposit") )
+				.map( ATMLogger -> ATMLogger.toString() )
+				.collect(Collectors.joining("\n"));
 	}
 }
