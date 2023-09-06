@@ -21,6 +21,22 @@ public class Lion extends Feline {
 	public String eat(String food) {
 		return "El león " + super.getName() + " come " + food;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append( super.toString()  );		
+		builder.append("Lion [maneSize=");
+		builder.append(maneSize);
+		builder.append(", hasNightVision=");
+		builder.append(hasNightVision());
+		builder.append(", HairColor=");
+		builder.append(getHairColor());
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 	
 
 }

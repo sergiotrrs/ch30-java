@@ -40,5 +40,29 @@ public class Animal {
 		return "El animal " + getName() + " está comiendo " + food;
 	}
 	
+	public String eat() {
+		return "El animal " + getName() + " come";
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MyAnimal [name=");
+		builder.append(name);
+		builder.append(", habitat=");
+		builder.append(habitat);
+		builder.append(", lifespan=");
+		builder.append(lifespan);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	
+//	@Override
+//	public String toString() {
+//		return "Animal [name=" + name + ", habitat=" + habitat + ", lifespan=" + lifespan + "]";
+//	}
+
+	
 
 }

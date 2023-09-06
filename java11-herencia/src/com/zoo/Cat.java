@@ -22,7 +22,23 @@ public class Cat extends Feline {
 	}
 	
 
+	@Override
+	public String eat(String food) {
+		return "El ser supremo " + super.getName() + " come " + food;
+	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append( super.toString()  );		
+		builder.append("\n\tCat [wild=");
+		builder.append( isWild() );
+		builder.append(", hasNightVision=");
+		builder.append(hasNightVision());
+		builder.append(", HairColor=");
+		builder.append(getHairColor());
+		builder.append("]");
+		return builder.toString();
+	}
 
 }

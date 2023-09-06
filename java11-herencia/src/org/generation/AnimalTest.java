@@ -16,7 +16,10 @@ public class AnimalTest {
 		
 		System.out.println( simba.eat("insectos, viscosos pero sabrosos") );
 		System.out.println( nico.eat("croquetas de carne y jugo") );
+		System.out.println( nico.eat() );
 
+		System.out.println( mufasa );
+		System.out.println( endora );
 	}
 
 }
