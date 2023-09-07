@@ -1,12 +1,29 @@
 package com.zoo;
 
-public class Animal {
+/**
+ *  Las clases abstractas son clases que no se pueden instanciar.
+ *  Estas clases se utilizan como modelos(plantillas) para
+ *  crear subclases concretas que se puedan instanciar.
+ *  
+ *  una clase abstracta se declara en la firma de la clase
+ *  con la palabra reservada "abstract"
+ *  
+ *  La clase abstracta puede contener métodos abstractos y
+ *  métodos concretos.
+ *  
+ *  Los métodos abstractos no tienen implementación. La implementación
+ *  se debe realizar en las subclases concretas.
+ *  
+ *  Las clases abstractas se recomienda utilizar para
+ *  clases que estén estrechamente relacionadas ( is-A )
+ */
+public abstract class Animal {
 	
 	private String name;
 	private String habitat;
 	private double lifespan;
 	
-	protected Animal(String name, String habitat, double lifespan) {		
+	public Animal(String name, String habitat, double lifespan) {		
 		this.name = name;
 		this.habitat = habitat;
 		this.lifespan = lifespan;
@@ -43,6 +60,16 @@ public class Animal {
 	public String eat() {
 		return "El animal " + getName() + " come";
 	}
+	
+	/**
+	 *  Un método abstracto no tiene implementación, solo
+	 *  la definción del método.
+	 *  Termina con punto y coma.
+	 *  
+	 *  Si tienes un método abastracto, tienes la obligación
+	 *  de hacer tu clase abstracta.
+	 */
+	abstract public String sleep(); 
 
 	@Override
 	public String toString() {

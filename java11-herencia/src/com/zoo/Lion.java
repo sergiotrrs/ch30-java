@@ -35,6 +35,11 @@ public class Lion extends Feline {
 		builder.append("]");
 		return builder.toString();
 	}
+
+	@Override
+	public String sleep() {		
+		return "El León duerme bien rocolino marinela";
+	}
 	
 	
 	

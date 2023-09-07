@@ -1,6 +1,6 @@
 package com.zoo;
 
-public class Feline extends Mammals {
+public abstract class Feline extends Mammals {
 	
 	private boolean nightVision;
 

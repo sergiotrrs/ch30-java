@@ -1,6 +1,7 @@
 package org.generation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.zoo.*;
 
@@ -34,6 +35,7 @@ public class AnimalTest {
 	public static void showEat( ArrayList<Animal> animals ) {
 		for (Animal animal : animals) {
 			System.out.println( animal.eat("cacahuates") );
+			System.out.println( animal.sleep() );
 			
 			if ( animal instanceof Cat )
 				System.out.println( ((Cat)animal).purr() );

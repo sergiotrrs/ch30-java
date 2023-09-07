@@ -41,4 +41,9 @@ public class Cat extends Feline {
 		return builder.toString();
 	}
 
+	@Override
+	public String sleep() {
+		return "El gato duerme 23 h.";
+	}
+
 }

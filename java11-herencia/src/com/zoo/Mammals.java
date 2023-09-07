@@ -8,7 +8,7 @@ package com.zoo;
  *  Para conocer si estamos aplicando adecuadamente la
  *  herencia, podríamos preguntarnos con "is-a".
  */
-public class Mammals extends Animal {
+public abstract class Mammals extends Animal {
 	
 	private String hairColor;
 	
