@@ -42,6 +42,7 @@ public class AnimalTest {
 		// Realizar un método estático que itere los elementos
 		// que imprima saludo (greeting) y si es una gato
 		// que ronronee (purr).
+		showPet(mascotas);
 		
 	} // cierre de main
 	
@@ -56,6 +57,20 @@ public class AnimalTest {
 				System.out.println( ((Cat)animal).trick() );
 				System.out.println( ((Cat)animal).greeting() );
 				System.out.println("<<<<<<<<");
+			}
+		}
+	}
+	
+	public static void showPet(List<Pet> mascotas) {
+		for (Pet pet : mascotas) {
+			System.out.println(pet.greeting());
+			System.out.println(pet.trick());
+			if (pet instanceof Cat) {
+				System.out.println("=================");
+				System.out.println(((Cat) pet).trick());
+				System.out.println(((Cat) pet).purr());
+				System.out.println("=================");
+
 			}
 		}
 	}
