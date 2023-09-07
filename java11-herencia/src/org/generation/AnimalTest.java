@@ -62,16 +62,15 @@ public class AnimalTest {
 	}
 	
 	public static void showPet(List<Pet> mascotas) {
+		final String MESSAGE_PET = "Mascotas"; // No se puede cambiar el valor
 		for (Pet pet : mascotas) {
+			System.out.println("==================");
 			System.out.println(pet.greeting());
 			System.out.println(pet.trick());
-			if (pet instanceof Cat) {
-				System.out.println("=================");
-				System.out.println(((Cat) pet).trick());
+			if (pet instanceof Cat) {				
 				System.out.println(((Cat) pet).purr());
-				System.out.println("=================");
-
 			}
+			System.out.println("=================");
 		}
 	}
 

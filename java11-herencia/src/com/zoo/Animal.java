@@ -84,6 +84,11 @@ public abstract class Animal {
 		return builder.toString();
 	}
 
+	// agregan final al método no se permite
+	// la sobreescritura en las clases heredadas
+	final public String origin() {
+		return "bigbang";
+	}
 	
 //	@Override
 //	public String toString() {

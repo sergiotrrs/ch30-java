@@ -6,7 +6,7 @@ import com.toy.Pet;
  * Para agregar una interfaz, utilizamos la palabra reservada
  * "implements" seguida de las interfaces que se implementarán.
  */
-public class Cat extends Feline implements Pet {
+public final class Cat extends Feline implements Pet {
 	
 	private boolean wild;
 
@@ -62,5 +62,10 @@ public class Cat extends Feline implements Pet {
 		return "Arrodillate ante mi ser inferior";
 	}
 
+	// No se puede sobreescribir un método final
+//	@Override
+//	public String origin() {
+//		return "extraterrestres";
+//	}
 
 }
