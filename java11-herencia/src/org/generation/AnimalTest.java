@@ -1,8 +1,8 @@
 package org.generation;
 
-import com.zoo.Animal;
-import com.zoo.Cat;
-import com.zoo.Lion;
+import java.util.ArrayList;
+
+import com.zoo.*;
 
 public class AnimalTest {
 
@@ -12,7 +12,7 @@ public class AnimalTest {
 		Lion mufasa = new Lion("Mufasa", 40);
 		Cat nico = new Cat("Nico", false);
 		Cat endora = new Cat("Endora", false);
-		Cat michi = new Cat("Michi", true);
+		Cat michiSalvaje = new Cat("Michi", true);
 		
 		System.out.println( simba.eat("insectos, viscosos pero sabrosos") );
 		System.out.println( nico.eat("croquetas de carne y jugo") );
@@ -20,6 +20,24 @@ public class AnimalTest {
 
 		System.out.println( mufasa );
 		System.out.println( endora );
+		
+		ArrayList< Animal > noahsArk = new ArrayList<>();
+		noahsArk.add(simba);
+		noahsArk.add(mufasa);
+		noahsArk.add(nico);
+		noahsArk.add(endora);
+		noahsArk.add(michiSalvaje);		
+		showEat( noahsArk );
+		
+	} // cierre de main
+	
+	public static void showEat( ArrayList<Animal> animals ) {
+		for (Animal animal : animals) {
+			System.out.println( animal.eat("cacahuates") );
+			
+			if ( animal instanceof Cat )
+				System.out.println( ((Cat)animal).purr() );
+		}
 	}
 
-}
+} // cierre de clase
