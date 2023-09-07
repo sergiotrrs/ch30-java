@@ -3,6 +3,8 @@ package org.generation;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.toy.Pet;
+import com.toy.Tamagochi;
 import com.zoo.*;
 
 public class AnimalTest {
@@ -29,6 +31,17 @@ public class AnimalTest {
 		noahsArk.add(endora);
 		noahsArk.add(michiSalvaje);		
 		showEat( noahsArk );
+		
+		Tamagochi pou = new Tamagochi("Pou", 5);
+		
+		List< Pet > mascotas = new ArrayList<>();
+		mascotas.add(pou); // clase Tamagochi
+		mascotas.add(nico); // clase Cat
+		mascotas.add(endora); // clase Cat
+		
+		// Realizar un método estático que itere los elementos
+		// que imprima saludo (greeting) y si es una gato
+		// que ronronee (purr).
 		
 	} // cierre de main
 	
