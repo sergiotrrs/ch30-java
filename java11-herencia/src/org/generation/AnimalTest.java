@@ -37,8 +37,13 @@ public class AnimalTest {
 			System.out.println( animal.eat("cacahuates") );
 			System.out.println( animal.sleep() );
 			
-			if ( animal instanceof Cat )
+			if ( animal instanceof Cat ) {
+				System.out.println(">>>>>>>>");
 				System.out.println( ((Cat)animal).purr() );
+				System.out.println( ((Cat)animal).trick() );
+				System.out.println( ((Cat)animal).greeting() );
+				System.out.println("<<<<<<<<");
+			}
 		}
 	}
 

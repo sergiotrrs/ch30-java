@@ -1,6 +1,12 @@
 package com.zoo;
 
-public class Cat extends Feline {
+import com.toy.Pet;
+
+/**
+ * Para agregar una interfaz, utilizamos la palabra reservada
+ * "implements" seguida de las interfaces que se implementarán.
+ */
+public class Cat extends Feline implements Pet {
 	
 	private boolean wild;
 
@@ -45,5 +51,16 @@ public class Cat extends Feline {
 	public String sleep() {
 		return "El gato duerme 23 h.";
 	}
+	
+	@Override
+	public String trick() {
+		return "Tiro el control de la TV y me limpio las patas";
+	}
+
+	@Override
+	public String greeting() {
+		return "Arrodillate ante mi ser inferior";
+	}
+
 
 }
