@@ -64,5 +64,85 @@ SELECT
 SELECT * FROM users;
 
 -- Mostrar el numero de personas que están activas e inactivas
+select count(*) from users 
+	 where active = 1; -- 22
+select count(*) from users 
+	where active = 0; -- 8
 
+SELECT active, COUNT(*) FROM users GROUP BY active;
+
+-- Mostrar todos los usuarios que su email sea de gmail.com
+SELECT * FROM users 
+  WHERE email LIKE "%gmail.com";
+  
+-- Mostrar todos los usuarios que su email sea de @gmail.com 
+-- pero que el usuario del correo solo tenga 3 letras  ej. 123@gmail.com 
+SELECT * FROM users WHERE email LIKE "___@gmail.com";
+
+-- Mostrar los usuarios con ID 1, 4, 6, 22, operador OR
+SELECT * FROM users
+	WHERE id = 1 OR id = 4 OR id = 6 OR id = 22;
+
+-- Para reducir la instrucción con múltiples Or
+-- podemos usar la instrucción IN
+SELECT * FROM users
+	WHERE id IN (1,4,6,22);
+
+-- Cuantos nombres(firstname) tenemos difente en la tabla users
+SELECT COUNT(DISTINCT firstname) FROM users;
+
+-- SELECT DISTINCT COUNT(firstname) FROM users; No es correcta la query
+
+-- Mostrar los nombres que están repetidos en la tabla
+SELECT firstname, COUNT(*) AS total  -- operador Alias
+	FROM users
+	GROUP BY firstname
+	HAVING total > 1;
+    
+--  Conocer los IDs de las personas que tienen nombres repetidos
+SELECT * FROM users
+	WHERE firstname IN ("Mau", "Benjamín");
+    
+SELECT id, firstname, lastname FROM users
+	WHERE firstname IN (
+		SELECT firstname
+		FROM users
+		GROUP BY firstname
+		HAVING COUNT(*) > 1
+		);
+
+-- Eliminar los nombres repetidos, exceptuando a
+-- Mau Peniche y Benjamín Ortega
+DELETE FROM users WHERE id IN (17,29,30,31);
+
+SELECT id FROM users
+	WHERE firstname IN 
+        (
+		SELECT firstname
+		FROM users        
+		GROUP BY firstname
+		HAVING COUNT(*) > 1
+		)  -- Entrega ["Mau", "Benjamín"]
+        AND NOT lastname IN ("Peniche", "Ortega");
+
+DELETE FROM users WHERE id IN (
+	SELECT id FROM users
+	WHERE firstname IN 
+        (
+		SELECT firstname
+		FROM users        
+		GROUP BY firstname
+		HAVING COUNT(*) > 1
+		)  -- Entrega ["Mau", "Benjamín"]
+        AND NOT lastname IN ("Peniche", "Ortega")
+);
+
+DELETE FROM users WHERE firstname IN(
+	SELECT DISTINCT firstname
+		FROM ( SELECT firstname
+					FROM users
+					WHERE firstname != "Mau" OR firstname != "Benjamín"
+					GROUP BY firstname
+					HAVING COUNT(*) > 1 ) AS c
+) ;
 
