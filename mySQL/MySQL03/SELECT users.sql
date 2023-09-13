@@ -61,8 +61,8 @@ SELECT
 		LOWER( REVERSE(lastname) ) 
 	FROM users WHERE firstname = "Mau";
 
+SELECT * FROM users;
 
-
-
+-- Mostrar el numero de personas que están activas e inactivas
 
 
