@@ -115,6 +115,7 @@ SELECT id, firstname, lastname FROM users
 -- Mau Peniche y Benjamín Ortega
 DELETE FROM users WHERE id IN (17,29,30,31);
 
+-- Buscar los repetidos excepto con los apellidos Peniche y Ortega
 SELECT id FROM users
 	WHERE firstname IN 
         (
@@ -125,24 +126,25 @@ SELECT id FROM users
 		)  -- Entrega ["Mau", "Benjamín"]
         AND NOT lastname IN ("Peniche", "Ortega");
 
+-- Eliminar los nombres repetidos, exceptuando a
+-- Mau Peniche y Benjamín Ortega
+/*
+El error "Error Code: 1093. You can't specify target table 'users' for update in FROM clause" 
+se produce cuando se intenta realizar una operación DELETE que afecta a la misma tabla (en este caso, la tabla "users")
+que se usa en una subconsulta dentro de la cláusula WHERE.
+
+Para resolver este problema, se utiliza una subconsulta derivada.
+*/
 DELETE FROM users WHERE id IN (
-	SELECT id FROM users
-	WHERE firstname IN 
-        (
-		SELECT firstname
-		FROM users        
-		GROUP BY firstname
-		HAVING COUNT(*) > 1
-		)  -- Entrega ["Mau", "Benjamín"]
-        AND NOT lastname IN ("Peniche", "Ortega")
+    SELECT id
+    FROM (
+        SELECT id FROM users
+        WHERE firstname IN (
+            SELECT firstname
+            FROM users
+            GROUP BY firstname
+            HAVING COUNT(*) > 1
+        )
+        AND lastname NOT IN ("Peniche", "Ortega")
+    ) AS subquery
 );
-
-DELETE FROM users WHERE firstname IN(
-	SELECT DISTINCT firstname
-		FROM ( SELECT firstname
-					FROM users
-					WHERE firstname != "Mau" OR firstname != "Benjamín"
-					GROUP BY firstname
-					HAVING COUNT(*) > 1 ) AS c
-) ;
-
