@@ -64,6 +64,67 @@ SELECT *
  ON products.fk_category_id = categories.id;
 
 
+-- Mostrar todas los usuarios que en su nombre lleve "Esteban"
+SELECT * FROM users
+	WHERE firstname LIKE '%Esteban%';
 
+-- Mostrar todos los artículos(incluyendo nombre del Productto) de las ordenes que ha realizado Esteban Castro
+SELECT 
+    users.id,
+    CONCAT( firstname, ' ', lastname ) AS Fullname,
+    orders.id AS idOrder,
+    products.name,
+    products.price,
+    orders_has_products.quantity,
+    orders.total_amount,
+    orders.purchase_date
+FROM
+    users
+	INNER JOIN  orders 
+    ON users.id = orders.fk_user_id
+    INNER JOIN orders_has_products 
+    ON orders.id = orders_has_products.orders_id
+	INNER JOIN products 
+    ON orders_has_products.products_id = products.id
+WHERE
+    users.id = 2 AND orders.id = 1;
+    
+-- -------------------------------------------------------
+SELECT 
+    u.id,
+    CONCAT( u.firstname, ' ', u.lastname ) AS Fullname,
+    o.id AS idOrder,
+    p.name,
+    p.price,
+    op.quantity,
+    o.total_amount,
+    o.purchase_date
+FROM users u
+INNER JOIN  orders o
+    ON u.id = o.fk_user_id
+INNER JOIN orders_has_products op
+    ON o.id = op.orders_id
+INNER JOIN products p
+    ON op.products_id = p.id
+WHERE
+    u.id = 2;
+-- ------------------------------------------ 
+SELECT 
+    u.id,
+    CONCAT( u.firstname, ' ', u.lastname ) AS Fullname,
+    o.id AS idOrder,
+    p.name,
+    p.price,
+    op.quantity,
+    o.total_amount,
+    o.purchase_date
+FROM users u
+INNER JOIN  orders o
+    ON u.id = o.fk_user_id
+INNER JOIN orders_has_products op
+    ON o.id = op.orders_id
+INNER JOIN products p
+    ON op.products_id = p.id
+ORDER BY Fullname;
 
 
