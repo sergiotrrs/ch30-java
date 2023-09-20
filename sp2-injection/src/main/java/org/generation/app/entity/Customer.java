@@ -1,5 +1,8 @@
 package org.generation.app.entity;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import lombok.*;
 
 @AllArgsConstructor
@@ -7,6 +10,8 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
+@Component
+@Qualifier("customer")
 public class Customer {
 	
 	private int id;

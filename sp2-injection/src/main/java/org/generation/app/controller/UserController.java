@@ -2,24 +2,22 @@ package org.generation.app.controller;
 
 import org.generation.app.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
-
 @RestController
-@AllArgsConstructor
-public class CustomerController {
+public class UserController {
 	
-	//@Autowired 
+	@Autowired
+	@Qualifier("customerVIP")
 	Customer customer;
 	
-
-	@GetMapping("api/customers")
-	public Customer getCustomerById() {
-		customer.setFirstName("Pato");
-		customer.setLastName("Donald");
-		customer.setEmail("pato@gmail.com");
+	@GetMapping("api/users")
+	public Customer getUserById() {
+		customer.setFirstName("Winnie");
+		customer.setLastName("Pooh");
+		customer.setEmail("pooh@gmail.com");
 		
 		return customer;
 	}
