@@ -1,9 +1,11 @@
-package com.example.accessingdatajpa;
+package com.example.accessingdatajpa.repository;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+
+import com.example.accessingdatajpa.entity.Customer;
 
 /*
  * La especificación de JPA es una especificación estándar de Java 

@@ -7,6 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.accessingdatajpa.entity.Customer;
+import com.example.accessingdatajpa.repository.CustomerRepository;
+
 @SpringBootApplication
 public class AccessingDataJpaApplication {
 
