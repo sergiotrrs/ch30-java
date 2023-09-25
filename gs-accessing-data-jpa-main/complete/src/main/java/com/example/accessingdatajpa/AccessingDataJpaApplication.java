@@ -36,7 +36,7 @@ public class AccessingDataJpaApplication {
 	 *  se utiliza comunmente para ejecutar tareas de inicialización
 	 *  o configuración al inicio de la aplicación.
 	 */
-	@Bean
+	//@Bean
 	public CommandLineRunner demo(CustomerRepository repository) {
 		return (args) -> {
 			// save a few customers

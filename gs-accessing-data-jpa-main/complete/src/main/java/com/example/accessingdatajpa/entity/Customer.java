@@ -1,9 +1,8 @@
 package com.example.accessingdatajpa.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.sql.Timestamp;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,14 +20,27 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="customers") // nombre de la tabla en la DB
 public class Customer {
 
 	@Id // Indica que el atributo será la clave primaria de la entidad
 	// Indica como se generarán automáticamente las claves primarias
-	@GeneratedValue(strategy=GenerationType.AUTO )
+	@GeneratedValue(strategy=GenerationType.IDENTITY )
 	private Long id;
+	@Column(name = "firstname", nullable = false, length = 150)
 	private String firstName;
+	@Column(name = "lastname", length = 150)
 	private String lastName;
+	@Column(name = "email", nullable = false, length = 150, unique = true)
+	private String email;
+	@Column(name = "password", length = 200)
+	private String password;
+	@Column(name = "active")
+	private Boolean active;
+	@Column(name = "created_at", insertable = false
+			, updatable = false
+			, columnDefinition = "timestamp default CURRENT_TIMESTAMP" )
+	private Timestamp createdAt;
 	
 	public Customer(String firstName, String lastName) {
 		    this.firstName = firstName;
