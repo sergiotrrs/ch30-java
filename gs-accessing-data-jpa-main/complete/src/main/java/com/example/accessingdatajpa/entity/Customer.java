@@ -1,6 +1,10 @@
 package com.example.accessingdatajpa.entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -46,6 +50,10 @@ public class Customer {
 		    this.firstName = firstName;
 		    this.lastName = lastName;
 		  }
+	
+	@OneToMany(mappedBy = "customer")
+	@JsonIgnoreProperties("customer")
+	private List<OrderProduct> orders = new ArrayList<>();
 
 }
 

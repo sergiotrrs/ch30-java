@@ -2,6 +2,8 @@ package com.example.accessingdatajpa.entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +24,7 @@ public class OrderProduct {
 	private double totalAmount;
 	@ManyToOne
 	@JoinColumn(name = "fk_customer_id" )
+	@JsonIgnoreProperties("orders")
 	private Customer customer;
 
 }

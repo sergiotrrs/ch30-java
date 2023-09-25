@@ -26,9 +26,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public OrderProduct getOrderById(Long id) {
-//		return orderRepository.findById(id)
-//				.orElseThrow( ()-> new IllegalStateException("Order does not exist with id "+ id) );
-		return new OrderProduct();
+		return orderRepository.findById(id)
+				.orElseThrow( ()-> new IllegalStateException("Order does not exist with id "+ id) );
 	}
 
 	@Override
