@@ -1,2 +1,2 @@
-INSERT INTO customer (firstname, lastname, email, password) VALUES ("Pato", "Donal", "pato@gmail.com", "123");
-INSERT INTO customer (firstname, lastname, email, password) VALUES ("Winnie", "Pooh", "winnie@gmail.com", "miel");
+INSERT INTO customers (firstname, lastname, email, password) VALUES ("Pato", "Donal", "pato@gmail.com", "123");
+INSERT INTO customers (firstname, lastname, email, password) VALUES ("Winnie", "Pooh", "winnie@gmail.com", "miel");
