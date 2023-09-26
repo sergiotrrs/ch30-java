@@ -11,6 +11,7 @@ import com.example.accessingdatajpa.repository.CustomerRepository;
 
 import lombok.extern.log4j.Log4j2;
 
+@CrossOrigin(origins = "*")
 @RestController // @Controller @ResponseBody
 @RequestMapping("api/v1/customers") // localhost:8080/api/vi/customers
 @Log4j2

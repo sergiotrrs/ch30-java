@@ -1,13 +1,16 @@
 package com.generation.math.test;
 
 public class CasiPalindromoTest {
-	/**
-	 * Fecha entrega: Jueves 14, 10 p.m.
+	/**	
 	 * 
 	 * Ejercicio Casi Palíndromo
 	 * 
-	 * Verificar si una paklabra es casi palíndromo,
+	 * Verificar si una palabra es casi palíndromo,
 	 * con el cambio de una sola letra.
+	 * 
+	 * La función debe aceptar un texto y retornar
+	 * con true si la palabra es casi palíndromo,
+	 * de lo contrario retornar false.
 	 * 
 	 * Ej.
 	 *  Oso -> false ( por que ya es un palíndromo)
