@@ -28,7 +28,9 @@ public class UserDetailsImpl implements UserDetails {
 		log.info("Agregando roles");
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		
-		//authorities.add(  new SimpleGrantedAuthority( "ROLE_"+this.customer.getRole() )); // TODO leer ROLE de Customer
+		//authorities.add(  new SimpleGrantedAuthority( "ROLE_"+this.customer.getRole() )); // TODO leer ROLE de Customer		
+		//customer.getRoles().forEach( role-> authorities.add(  new SimpleGrantedAuthority( "ROLE_"+ role.getRoleName() )) );
+		
 		authorities.add(  new SimpleGrantedAuthority( "ROLE_CUSTOMER" ));
 		
 		if( this.customer.getFirstName().toLowerCase().charAt(0) == 'a' ) {
