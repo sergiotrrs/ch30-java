@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.accessingdatajpa.entity.Customer;
@@ -19,6 +20,8 @@ public class CustomerController {
 
 	@Autowired
 	CustomerRepository customerRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@GetMapping // localhost:8080/api/vi/customers
 	public List<Customer> getAllCustomers(){
@@ -37,6 +40,7 @@ public class CustomerController {
 	public Customer setCustomer(@RequestBody Customer customer) {
 		log.info("Solicitud post, agregar nuevo cliente");
 		customer.setId(null);
+		customer.setPassword( passwordEncoder.encode( customer.getPassword() ) );
 		Customer newCustomer = customerRepository.save(customer);
 		return newCustomer;
 	}

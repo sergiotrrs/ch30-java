@@ -58,16 +58,24 @@ public class WebSecurityConfig {
 		
 		http.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
-				.requestMatchers( HttpMethod.GET, "/api/v1/products" ).permitAll()
+				.requestMatchers( "/api/v1/products" ).permitAll()
 				.requestMatchers( "/api/v1/orders/**" ).hasRole("ADMIN")
 				.requestMatchers( "/api/v1/users/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")	
 				.anyRequest().authenticated() )
 			.addFilter(jwtAuthenticationFilter)
 			.addFilterBefore( jwtAutorizationFilter  , UsernamePasswordAuthenticationFilter.class )
 			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery
+			.cors( cors -> cors.disable() ) 
 			.httpBasic( withDefaults() ); // habilitando la autenticación básica http
 		return http.build();
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// STEP 2 Autenticación basada en usuarios en memoria
 	/*
