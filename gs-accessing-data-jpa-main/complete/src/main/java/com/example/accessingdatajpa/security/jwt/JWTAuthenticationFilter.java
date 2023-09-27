@@ -26,6 +26,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		AuthCredentials authCredentials = new AuthCredentials();
 		
 		try {
+			// Asumimos que el body de la petición vendrá en el formato JSON: { "email": "pato@gmail.com", "password": "123"
+			// Realizamos un mapeo a nuestra clase AuthCredentials
 			authCredentials = new ObjectMapper().readValue( request.getReader(), AuthCredentials.class );
 			log.info( authCredentials.toString());
 		} catch (IOException e) {
@@ -36,16 +38,21 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				authCredentials.getEmail(),
 				authCredentials.getPassword()
 				);
-		
+		// Autenticamos el usuario con authManager
 		return getAuthenticationManager().authenticate(usernamePAT);
 	}
 	
+	// Si la autenticación fue correcta agregamos el token a la respuesta, en la parte de header
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		
 		UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
-		String token = "tokenquedebeservalido"; // TODO crear el token correcto
+		String token = TokenUtils.createToken( 
+				userDetails.FullName(), 
+				userDetails.getUsername(),
+				userDetails.getAuthorities()
+				);
 		
 		response.addHeader("Authorization", "Bearer " + token);
 		response.getWriter().flush();
