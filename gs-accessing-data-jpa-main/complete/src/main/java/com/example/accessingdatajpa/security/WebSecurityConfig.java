@@ -16,6 +16,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /*
  *  @Configuration indica que una clase es una configuración de Spring.
  *  la clase se puede utilizar para definir y configurar beans de Spring, 
@@ -34,6 +36,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+	
+	@Autowired
+	UserDetailsService userDetailsService;
 	
 	
 	// STEP 1 Deshabilitar la seguridad en filter chain	
@@ -79,7 +84,7 @@ public class WebSecurityConfig {
 				.getSharedObject( AuthenticationManagerBuilder.class);
 		
 		authManagerBuilder
-			.userDetailsService(null ) // TODO crear la clase userDetailsSercvice
+			.userDetailsService( userDetailsService ) 
 			.passwordEncoder( passwordEncoder );
 		
 		return authManagerBuilder.build();

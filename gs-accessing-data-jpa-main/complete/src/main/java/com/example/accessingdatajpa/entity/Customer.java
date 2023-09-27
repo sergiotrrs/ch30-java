@@ -39,7 +39,7 @@ public class Customer {
 	private String email;
 	@Column(name = "password", length = 200)
 	private String password;
-	@Column(name = "active")
+	@Column(name = "active", columnDefinition = "BIT(1) default 1" )
 	private Boolean active;
 	@Column(name = "created_at", insertable = false
 			, updatable = false
