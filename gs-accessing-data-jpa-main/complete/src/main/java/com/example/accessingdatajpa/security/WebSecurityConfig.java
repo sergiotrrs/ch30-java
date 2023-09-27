@@ -14,8 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.example.accessingdatajpa.security.jwt.JWTAuthenticationFilter;
+import com.example.accessingdatajpa.security.jwt.JWTAuthorizationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -42,6 +43,8 @@ public class WebSecurityConfig {
 	
 	@Autowired
 	UserDetailsService userDetailsService;
+	@Autowired
+	JWTAuthorizationFilter jwtAutorizationFilter;
 	
 	
 	// STEP 1 Deshabilitar la seguridad en filter chain	
@@ -60,7 +63,7 @@ public class WebSecurityConfig {
 				.requestMatchers( "/api/v1/users/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")	
 				.anyRequest().authenticated() )
 			.addFilter(jwtAuthenticationFilter)
-			// .addFilterBefore(   , UsernamePaswordAuthenticationFilter.class ) //TODO verificar token
+			.addFilterBefore( jwtAutorizationFilter  , UsernamePasswordAuthenticationFilter.class )
 			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery
 			.httpBasic( withDefaults() ); // habilitando la autenticación básica http
 		return http.build();
