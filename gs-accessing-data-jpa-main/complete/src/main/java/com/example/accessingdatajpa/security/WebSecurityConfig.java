@@ -2,8 +2,13 @@ package com.example.accessingdatajpa.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -30,13 +35,33 @@ public class WebSecurityConfig {
 	// STEP 1 Deshabilitar la seguridad en filter chain	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http ) throws Exception {
-		http.authorizeHttpRequests( authorize -> authorize.anyRequest().permitAll() )
-			.csrf(csrf -> csrf.disable())
-			.httpBasic( withDefaults() );
+		http.authorizeHttpRequests( authorize -> authorize
+				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
+				.requestMatchers( HttpMethod.GET, "/api/v1/products" ).permitAll()
+				.anyRequest().authenticated() )
+			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery
+			.httpBasic( withDefaults() ); // habilitando la autenticación básica http
 		return http.build();
 	}
 	
-	
+	// STEP 2 Autenticación basada en usuarios en memoria
+	@Bean
+	UserDetailsService userDetailsService() {
+		
+		UserDetails edwin = User.builder()
+				.username("edwin@ninja.com")
+				.password("{noop}123")
+				.roles("ADMIN")
+				.build();
+				
+		UserDetails lalo = User.builder()
+				.username("eduardo")
+				.password("{noop}456")
+				.roles("CUSTOMER", "SAYAJIN") // "ROLE_CUSTOMER"
+				.build();
+		
+		return new InMemoryUserDetailsManager( edwin, lalo)  ;
+	}
 	
 	
 
