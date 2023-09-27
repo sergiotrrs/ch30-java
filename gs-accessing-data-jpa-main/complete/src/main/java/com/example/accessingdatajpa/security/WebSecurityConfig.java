@@ -14,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.accessingdatajpa.security.jwt.JWTAuthenticationFilter;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +46,21 @@ public class WebSecurityConfig {
 	
 	// STEP 1 Deshabilitar la seguridad en filter chain	
 	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http ) throws Exception {
+	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager ) throws Exception {
+		
+		JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
+		jwtAuthenticationFilter.setAuthenticationManager( authManager );
+		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+		
+		
 		http.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
 				.requestMatchers( HttpMethod.GET, "/api/v1/products" ).permitAll()
 				.requestMatchers( "/api/v1/orders/**" ).hasRole("ADMIN")
-				.requestMatchers( "/api/v1/users/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")				
+				.requestMatchers( "/api/v1/users/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")	
 				.anyRequest().authenticated() )
+			.addFilter(jwtAuthenticationFilter)
+			// .addFilterBefore(   , UsernamePaswordAuthenticationFilter.class ) //TODO verificar token
 			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery
 			.httpBasic( withDefaults() ); // habilitando la autenticación básica http
 		return http.build();
