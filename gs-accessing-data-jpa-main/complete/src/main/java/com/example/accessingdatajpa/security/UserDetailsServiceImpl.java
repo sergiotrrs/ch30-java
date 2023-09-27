@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Customer customer = customerRepository.findByEmail(email)
 				.orElseThrow( ()-> new IllegalStateException("User not found with email: " + email));
 		
-		return null; // TODO crear clase concreta de UserDetails
+		return new UserDetailsImpl( customer ); 
 	}
 
 }
