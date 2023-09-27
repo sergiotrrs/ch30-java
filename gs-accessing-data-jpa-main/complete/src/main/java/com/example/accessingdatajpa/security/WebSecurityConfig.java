@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -38,6 +40,8 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
 				.requestMatchers( HttpMethod.GET, "/api/v1/products" ).permitAll()
+				.requestMatchers( "/api/v1/orders/**" ).hasRole("ADMIN")
+				.requestMatchers( "/api/v1/users/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")				
 				.anyRequest().authenticated() )
 			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery
 			.httpBasic( withDefaults() ); // habilitando la autenticación básica http
@@ -50,18 +54,28 @@ public class WebSecurityConfig {
 		
 		UserDetails edwin = User.builder()
 				.username("edwin@ninja.com")
-				.password("{noop}123")
+				.password( passwordEncoder().encode("123")   )
 				.roles("ADMIN")
 				.build();
 				
 		UserDetails lalo = User.builder()
 				.username("eduardo")
-				.password("{noop}456")
+				//.password("{noop}456")
+				.password( passwordEncoder().encode("456")   )
 				.roles("CUSTOMER", "SAYAJIN") // "ROLE_CUSTOMER"
 				.build();
 		
 		return new InMemoryUserDetailsManager( edwin, lalo)  ;
 	}
+	
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+//	public static void main(String[] args) {
+//		System.out.println("Password: " +  new BCryptPasswordEncoder().encode("123") );
+//	}
 	
 	
 
