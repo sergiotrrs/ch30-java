@@ -42,7 +42,7 @@ import com.example.accessingdatajpa.entity.Customer;
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 	List<Customer> findByLastName(String lastName);
-
+	Optional<Customer> findByEmail(String email);
 	Customer findById(long id);
 	// Optional<Customer> findById(long id);
    

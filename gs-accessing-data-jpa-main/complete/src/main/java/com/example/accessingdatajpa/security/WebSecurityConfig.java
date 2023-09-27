@@ -3,6 +3,8 @@ package com.example.accessingdatajpa.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -49,6 +51,7 @@ public class WebSecurityConfig {
 	}
 	
 	// STEP 2 Autenticación basada en usuarios en memoria
+	/*
 	@Bean
 	UserDetailsService userDetailsService() {
 		
@@ -66,7 +69,23 @@ public class WebSecurityConfig {
 				.build();
 		
 		return new InMemoryUserDetailsManager( edwin, lalo)  ;
+	}*/
+	
+	// STEP 3 Leer usuarios de la DB
+	@Bean
+	AuthenticationManager authManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
+		
+		AuthenticationManagerBuilder authManagerBuilder = http
+				.getSharedObject( AuthenticationManagerBuilder.class);
+		
+		authManagerBuilder
+			.userDetailsService(null ) // TODO crear la clase userDetailsSercvice
+			.passwordEncoder( passwordEncoder );
+		
+		return authManagerBuilder.build();
 	}
+	
+	
 	
 	@Bean
 	PasswordEncoder passwordEncoder() {
