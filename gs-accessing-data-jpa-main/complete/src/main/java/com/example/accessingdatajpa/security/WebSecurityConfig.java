@@ -2,23 +2,27 @@ package com.example.accessingdatajpa.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import com.example.accessingdatajpa.security.jwt.JWTAuthenticationFilter;
 import com.example.accessingdatajpa.security.jwt.JWTAuthorizationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -54,29 +58,35 @@ public class WebSecurityConfig {
 		JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
 		jwtAuthenticationFilter.setAuthenticationManager( authManager );
 		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-		
-		
-		http.authorizeHttpRequests( authorize -> authorize
+			
+		http
+			.cors(Customizer.withDefaults())
+			.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
 				.requestMatchers( "/api/v1/products" ).permitAll()
 				.requestMatchers( "/api/v1/orders/**" ).hasRole("ADMIN")
-				.requestMatchers( "/api/v1/users/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")	
+				.requestMatchers( "/api/v1/customers/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")	
 				.anyRequest().authenticated() )
 			.addFilter(jwtAuthenticationFilter)
 			.addFilterBefore( jwtAutorizationFilter  , UsernamePasswordAuthenticationFilter.class )
-			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery
-			.cors( cors -> cors.disable() ) 
+			.sessionManagement(managment -> managment.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+			.csrf(csrf -> csrf.disable()) // deshabilitando lka protección Cross-Site Request Forgery		
 			.httpBasic( withDefaults() ); // habilitando la autenticación básica http
 		return http.build();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins( List.of("http://127.0.0.1:5500") );
+		configuration.setAllowedMethods( List.of("GET", "POST", "PUT", "DELETE") );
+		configuration.setAllowedHeaders( List.of("Authorization","Content-Type") );
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+		
+	}
+		
 	// STEP 2 Autenticación basada en usuarios en memoria
 	/*
 	@Bean
@@ -122,7 +132,6 @@ public class WebSecurityConfig {
 //	public static void main(String[] args) {
 //		System.out.println("Password: " +  new BCryptPasswordEncoder().encode("123") );
 //	}
-	
 	
 
 }

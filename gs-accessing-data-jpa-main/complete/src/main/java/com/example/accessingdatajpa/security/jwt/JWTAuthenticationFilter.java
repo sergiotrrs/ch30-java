@@ -15,6 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
+import org.json.JSONObject;
 
 @Log4j2
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter  {
@@ -54,8 +55,17 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				userDetails.getAuthorities()
 				);
 		
-		response.addHeader("Authorization", "Bearer " + token);
-		response.getWriter().flush();
+		// Crear un objeto JSON para la respuesta
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("token", token);
+
+		// Configurar la respuesta HTTP
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");		
+		//response.addHeader("Authorization", "Bearer " + token);
+		// Establecer el cuerpo de la respuesta como el objeto JSON
+		response.getWriter().write(jsonResponse.toString());	
+		response.getWriter().close();
 		
 		super.successfulAuthentication(request, response, chain, authResult);
 	}
