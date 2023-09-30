@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.accessingdatajpa.service.CustomerServiceClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-09-30T08:16:42" hostname="T3554" time="1.433">
+<testsuite name="com.example.accessingdatajpa.service.CustomerServiceClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-09-30T19:05:14" hostname="T3554" time="1.552">
   <properties/>
-  <testcase name="getCustomerByIdTest()" classname="com.example.accessingdatajpa.service.CustomerServiceClass" time="1.433"/>
+  <testcase name="getCustomerByIdTest()" classname="com.example.accessingdatajpa.service.CustomerServiceClass" time="1.552"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

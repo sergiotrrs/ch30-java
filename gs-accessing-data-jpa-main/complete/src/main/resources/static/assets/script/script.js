@@ -10,6 +10,7 @@ console.log(pathname);
 console.log(search);
 console.log(hash);
 const urlServer= `${protocol}//${host}`;
+console.log(urlServer);
 
 // Obtenemos la referencia del formulario
 const registerForm = document.forms["registerForm"];
@@ -46,10 +47,9 @@ const postUser = async (userData) => {
 /**
  * No se requiere token para esta solicitud
  */
-const getProducts = async () => {
-	
+const getProducts = async () => {	
   const url = `${urlServer}/api/v1/products`;
-  console.log("get to " + url);
+  console.log("get to: " + url);
   const responseJSON = await fetch(url);
   console.log(responseJSON.status);
   const response = await responseJSON.json();
@@ -61,7 +61,7 @@ const getProducts = async () => {
  */
 const postProduct = async (productData) => {
   const url = `${urlServer}/api/v1/products`;
-
+  console.log("post to: " + url);
   const randomId = getRandomInt(10_000); // para generar email aleatorio
   productData = {
     firstName: `Patricio${randomId}`,
@@ -85,6 +85,7 @@ const postProduct = async (productData) => {
 const getCustomers = async () => {
   console.log("Get customers");
   const url = `${urlServer}/api/v1/customers`;
+  console.log("get to: " + url);
   const token = localStorage.getItem("token");
   try {
     const response = await fetch(url, {
@@ -103,8 +104,8 @@ const getCustomers = async () => {
  */
 const postOrder = async () => {
   const url = `${urlServer}/api/v1/orders`;
+  console.log("post to: " + url);
   const token = localStorage.getItem("token");
-  
   const randomAmount = getRandomInt(10_000); // para generar producto aleatorio
  
   orderData = {
@@ -130,6 +131,7 @@ const postOrder = async () => {
  */
 const getOrders = async () => {
   const url = `${urlServer}/api/v1/orders`;
+  console.log("get to: " + url);
   const token = localStorage.getItem("token");
   const response = await fetch(url, {
     headers: { Authorization: `Bearer ${token}` },
