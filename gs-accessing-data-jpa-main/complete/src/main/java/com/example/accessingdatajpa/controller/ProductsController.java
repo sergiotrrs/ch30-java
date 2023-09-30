@@ -40,6 +40,7 @@ public class ProductsController {
 	public Customer setCustomer(@RequestBody Customer customer) {
 		log.info("Solicitud post, agregar nuevo cliente");
 		customer.setId(null);
+		customer.setActive(true);
 		customer.setPassword( passwordEncoder.encode( customer.getPassword() ) );
 		Customer newCustomer = customerRepository.save(customer);
 		return newCustomer;

@@ -44,36 +44,33 @@ public class TokenUtils {
 	
 	// Validar el token recibido por el cliente
 	public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
-		
+
+		UsernamePasswordAuthenticationToken userAuth;
+
 		try {
-		Claims claims = Jwts
-				.parserBuilder()
-				.setSigningKey( ACCESS_TOKEN_SECRET.getBytes())
-				.build()
-				.parseClaimsJws(token)
-				.getBody();
-		
-		String email = claims.getSubject();
-		
-		List<Map<String,String>> authoritiesList = (List<Map<String, String>>) claims.get("authorities");
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		
-		if( authoritiesList != null ) {
-			for( Map<String, String> authorityMap : authoritiesList) {
-				String authority = authorityMap.get("authority");
-				authorities.add( new SimpleGrantedAuthority(authority));
+			Claims claims = Jwts.parserBuilder().setSigningKey(ACCESS_TOKEN_SECRET.getBytes()).build()
+					.parseClaimsJws(token).getBody();
+
+			String email = claims.getSubject();
+
+			List<Map<String, String>> authoritiesList = (List<Map<String, String>>) claims.get("authorities");
+			List<GrantedAuthority> authorities = new ArrayList<>();
+
+			if (authoritiesList != null) {
+				for (Map<String, String> authorityMap : authoritiesList) {
+					String authority = authorityMap.get("authority");
+					authorities.add(new SimpleGrantedAuthority(authority));
+				}
 			}
-		}
-		
-		UsernamePasswordAuthenticationToken userAuth = 
-				new UsernamePasswordAuthenticationToken( email, null, authorities);
-		
-		return userAuth;
-		} catch ( JwtException e ) {
+
+			userAuth = new UsernamePasswordAuthenticationToken(email, null, authorities);
+
+		} catch (JwtException e) {
 			e.printStackTrace();
-			return null;
+			userAuth = new UsernamePasswordAuthenticationToken(null, null, null);
 		}
-		
+
+		return userAuth;
 	}
 	
 

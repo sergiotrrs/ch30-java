@@ -67,7 +67,8 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return this.customer.getActive();	
+		//return this.customer.getActive();
+		return true;
 	}
 	
 	public String FullName() {
