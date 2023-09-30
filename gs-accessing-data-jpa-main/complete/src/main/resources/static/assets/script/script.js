@@ -9,7 +9,7 @@ console.log(host);
 console.log(pathname);
 console.log(search);
 console.log(hash);
-const urlServer= `${hash}//${host}`;
+const urlServer= `${protocol}//${host}`;
 
 // Obtenemos la referencia del formulario
 const registerForm = document.forms["registerForm"];
