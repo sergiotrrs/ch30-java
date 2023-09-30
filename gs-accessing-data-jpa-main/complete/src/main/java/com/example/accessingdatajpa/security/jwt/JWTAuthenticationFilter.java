@@ -62,7 +62,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		// Configurar la respuesta HTTP
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");		
-		//response.addHeader("Authorization", "Bearer " + token);
+		response.addHeader("Authorization", "Bearer " + token);
 		// Establecer el cuerpo de la respuesta como el objeto JSON
 		response.getWriter().write(jsonResponse.toString());	
 		response.getWriter().close();

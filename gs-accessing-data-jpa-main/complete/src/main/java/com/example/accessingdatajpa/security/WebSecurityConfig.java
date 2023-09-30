@@ -63,7 +63,7 @@ public class WebSecurityConfig {
 			.cors(Customizer.withDefaults())
 			.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
-				.requestMatchers( "/api/v1/products" ).permitAll()
+				.requestMatchers( "/api/v1/products", "/index.html","/assets/**", "/" ).permitAll()
 				.requestMatchers( "/api/v1/orders/**" ).hasRole("ADMIN")
 				.requestMatchers( "/api/v1/customers/**" ).hasAnyRole("ADMIN", "CUSTOMER", "SAYAJIN")	
 				.anyRequest().authenticated() )

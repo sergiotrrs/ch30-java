@@ -1,2 +1,3 @@
-INSERT INTO customers(firstname, lastname, email, password) VALUES('Pato', 'Donal', 'pato@gmail.com', '123');
-INSERT INTO customers(firstname, lastname, email, password) VALUES('Winnie', 'Pooh', 'winnie@gmail.com', 'miel');
+INSERT INTO customers(firstname, lastname, email, password) VALUES('Pato', 'Donal', 'pato@gmail.com', '$2a$10$9ERRfNmh9XvGji77p6d57OLWx3wSjoFO8qlYFttcMCZRkxchUDiPe');
+INSERT INTO customers(firstname, lastname, email, password) VALUES('Winnie', 'Pooh', 'winnie@gmail.com', '$2a$10$9ERRfNmh9XvGji77p6d57OLWx3wSjoFO8qlYFttcMCZRkxchUDiPe');
+INSERT INTO customers(firstname, lastname, email, password) VALUES('Arenita', 'Mejillas', 'arenita@gmail.com', '$2a$10$9ERRfNmh9XvGji77p6d57OLWx3wSjoFO8qlYFttcMCZRkxchUDiPe');
